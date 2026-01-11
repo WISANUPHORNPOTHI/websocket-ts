@@ -1,18 +1,18 @@
-# 1. Install dependencies
-FROM node:18-alpine AS deps
+# 1. Install dependencies (with dev)
+FROM node:18 AS deps
 WORKDIR /app
 COPY package*.json ./
-RUN npm install --include=dev
+RUN npm ci
 
 # 2. Build TypeScript
-FROM node:18-alpine AS builder
+FROM node:18 AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-RUN npm run build
+RUN npx tsc
 
 # 3. Run server
-FROM node:18-alpine AS runner
+FROM node:18 AS runner
 WORKDIR /app
 ENV NODE_ENV=production
 
