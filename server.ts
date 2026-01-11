@@ -11,9 +11,12 @@ wss.on("connection", (ws, req) => {
     wss.clients.forEach((client) => {
       if (client.readyState === client.OPEN) {
         client.send(message.toString());
+
       }
     });
+
   });
+
 
   ws.on("close", () => {
     console.log("Client disconnected");
