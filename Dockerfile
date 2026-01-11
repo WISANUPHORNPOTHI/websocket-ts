@@ -2,7 +2,7 @@
 FROM node:18-alpine AS deps
 WORKDIR /app
 COPY package*.json ./
-RUN npm install
+RUN npm install --include=dev
 
 # 2. Build TypeScript
 FROM node:18-alpine AS builder
