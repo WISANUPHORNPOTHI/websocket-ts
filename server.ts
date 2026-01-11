@@ -13,7 +13,7 @@ wss.on("connection", (ws, req) => {
         client.send(message.toString());
 
       }
-    });
+    }); 
 
   });
 
